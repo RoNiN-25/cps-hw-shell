@@ -12,3 +12,7 @@ void get_cmd_strings(char* cmd, char** cmd_strings) {
     i++;
   } 
 }
+
+void disp_help(char **cmd_strings, char* return_data) {
+  command h = array_of_cmd[0];
+}

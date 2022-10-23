@@ -5,6 +5,7 @@ typedef void (*fn_ptr)(char **cmd_strings, char* return_data);
 struct command {
   const char *name;
   fn_ptr function;
+  fn_ptr help_fn;
 };
 
 extern void run_command(char **cmd_strings, char* return_data);
