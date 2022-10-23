@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "led_cmd.h"
+#include "util.h"
 
 
 void set_led_color(char **cmd_strings, char* return_data) {
@@ -65,7 +66,7 @@ void set_led_color(char **cmd_strings, char* return_data) {
   strcpy(return_data, "OK");
 }
 
-extern void show_help(char **cmd_strings, char* return_data) {
+extern void show_help_color(char **cmd_strings, char* return_data) {
   const char* help_text = "sw [n] \t - prints the state of the switch SWn. n can be 1 or 2";
   strcpy(return_data, help_text);
 }

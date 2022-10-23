@@ -4,14 +4,16 @@
 #include "util.h"
 #include "led_cmd.h"
 #include "sw_cmd.h"
+#include "blink_cmd.h"
 
 // Maximum number of arguments
 int MAX_ARG = 10;
 
 // Add the command structs to this array
 struct command array_of_cmd[] = {
-  {.name="color", .function=set_led_color, .help_fn=show_help},
-  {.name="sw"   , .function=get_sw_state , .help_fn=show_help},
+  {.name="color", .function=set_led_color, .help_fn=show_help_color },
+  {.name="sw"   , .function=get_sw_state , .help_fn=show_help_sw    },
+  {.name="blink", .function=blink_led    , .help_fn=show_help_blink },
 };
 
 
@@ -20,6 +22,7 @@ void run_command(char **cmd_strings, char* return_data) {
   for (int i = 0; i < number_of_commands; i++) {
     if(!strcmp(*cmd_strings, array_of_cmd[i].name)) {
       array_of_cmd[i].function(cmd_strings, return_data);
+      break;
     }
   }
   // If help command, display help strings
@@ -28,9 +31,9 @@ void run_command(char **cmd_strings, char* return_data) {
       array_of_cmd[i].help_fn(cmd_strings, return_data);
       Serial.println(return_data);
     }
+    // Empty return data as help has already been displayed
+    strcpy(return_data, "");
   }
-  // Empty return data as help has already been displayed
-  strcpy(return_data, "");
 }
 
 void process_command(char* cmd, char* cmd_output) {

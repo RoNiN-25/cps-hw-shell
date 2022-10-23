@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sw_cmd.h"
+#include "util.h"
 
 void get_sw_state(char **cmd_strings, char* return_data) {
   char* number = *(cmd_strings+1);
@@ -9,12 +10,12 @@ void get_sw_state(char **cmd_strings, char* return_data) {
   switch(n) {
     case 1: {
       int state = digitalRead(SW1);
-      state == 1 ? strcpy(return_data, "ON"): strcpy(return_data, "OFF");
+      state == 1 ? strcpy(return_data, "OFF"): strcpy(return_data, "ON");
     }
       break;
     case 2: {
       int state = digitalRead(SW2);
-      state == 1 ? strcpy(return_data, "ON"): strcpy(return_data, "OFF");
+      state == 1 ? strcpy(return_data, "OFF"): strcpy(return_data, "ON");
     }
       break;
     default: {
@@ -23,10 +24,9 @@ void get_sw_state(char **cmd_strings, char* return_data) {
     }
       break;
   }
-  strcat(return_data, "\nOK");
 }
 
-extern void show_help(char **cmd_strings, char* return_data) {
+extern void show_help_sw(char **cmd_strings, char* return_data) {
   const char* help_text = "color [n] \t - set LED color to n. n can be between 0 and 7";
   strcpy(return_data, help_text);
 }
