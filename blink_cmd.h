@@ -12,7 +12,7 @@ extern void stop_timer();
 
 extern void timerIntHandler();
 
-extern int red_led_state;
+extern int led_state;
 
 
 #endif // BLINK_CMD_H_

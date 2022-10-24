@@ -9,6 +9,7 @@
 
 extern void get_cmd_strings(char* cmd,  char** cmd_strings);
 extern void disp_help(char **cmd_strings, char* return_data);
+extern void set_led_color(int n);
 
 extern int MAX_ARG;
 

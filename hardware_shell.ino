@@ -39,8 +39,7 @@ void loop() {
       cmd[pos] = '\0';
       pos = 0;
       process_command(cmd, resp);
-      Serial.print(resp);
-      Serial.print("\n");
+      Serial.println(resp);
       Serial.print(">");
       strcpy(resp, "");
     }

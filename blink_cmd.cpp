@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "blink_cmd.h"
+#include "led_cmd.h"
 #include "util.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
 
-int red_led_state = LOW;
+int led_state = 0;
 
 void blink_led(char **cmd_strings, char* return_data) {
   char* number = *(cmd_strings+1);
@@ -34,7 +35,8 @@ void start_timer(unsigned int delay_value) {
 void stop_timer() {
   // disable the timer
   TimerDisable(TIMER4_BASE, TIMER_A);
-  digitalWrite(RED_LED, LOW);
+  // Turn off blinking and set constant color
+  set_led_color(current_led_color);
 }
 
 void init_timer() {
@@ -50,11 +52,11 @@ void init_timer() {
 
 void timerIntHandler() {
   TimerIntClear(TIMER4_BASE, TIMER_TIMA_TIMEOUT);
-  digitalWrite(RED_LED, red_led_state);
-  red_led_state = !red_led_state;
+  led_state == 1 ? set_led_color(current_led_color) : set_led_color(0);
+  led_state = !led_state;
 }
 
 void show_help_blink(char **cmd_strings, char* return_data) {
-  const char* help_text = "blink [n] \t - Blinks the red LED every n*0.1s. n can be between 0 to 20";
+  const char* help_text = "blink [n] \t - Blinks the colored LED every n*0.1s. n can be between 0 to 20";
   strcpy(return_data, help_text);
 }

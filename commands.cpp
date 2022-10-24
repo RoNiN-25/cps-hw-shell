@@ -11,9 +11,9 @@ int MAX_ARG = 10;
 
 // Add the command structs to this array
 struct command array_of_cmd[] = {
-  {.name="color", .function=set_led_color, .help_fn=show_help_color },
-  {.name="sw"   , .function=get_sw_state , .help_fn=show_help_sw    },
-  {.name="blink", .function=blink_led    , .help_fn=show_help_blink },
+  {.name="color", .function=change_led_color, .help_fn=show_help_color },
+  {.name="sw"   , .function=get_sw_state    , .help_fn=show_help_sw    },
+  {.name="blink", .function=blink_led       , .help_fn=show_help_blink },
 };
 
 
