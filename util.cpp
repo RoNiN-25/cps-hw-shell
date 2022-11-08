@@ -3,6 +3,14 @@
 #include "util.h"
 #include "commands.h"
 
+void init_pins() {
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(BLUE_LED, OUTPUT);
+  pinMode(SW1, INPUT_PULLUP);
+  pinMode(SW2, INPUT_PULLUP);
+}
+
 void get_cmd_strings(char* cmd, char** cmd_strings) {
   char *token = strtok(cmd, " ");
   cmd_strings[0] = token;

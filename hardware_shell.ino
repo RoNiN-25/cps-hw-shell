@@ -4,27 +4,24 @@
 #include "led_cmd.h"
 #include "sw_cmd.h"
 #include "blink_cmd.h"
+#include "motor_cmd.h"
+#include "photo_sensor_cmd.h"
 
 char cmd[80];
-char resp[80];
+char resp[120];
 int pos = 0;
-const char version[] = "1.0";
+const char version[] = "2.0";
 
-void init_pins() {
-  pinMode(RED_LED, OUTPUT);
-  pinMode(GREEN_LED, OUTPUT);
-  pinMode(BLUE_LED, OUTPUT);
-  pinMode(SW1, INPUT_PULLUP);
-  pinMode(SW2, INPUT_PULLUP);
-  init_timer();
-}
 void setup() {
   // put your setup code here, to run once:
   init_pins();
+  init_motors();
+  init_timer();
+  init_photo_sensor();
   Serial.begin(115200);
   Serial.println("Initializing shell...");
   Serial.print("Version:"); 
-  Serial.println("1.0");
+  Serial.println(version);
   Serial.print(">");
 }
 
